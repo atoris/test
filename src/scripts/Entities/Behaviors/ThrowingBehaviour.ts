@@ -11,9 +11,9 @@ export class ThrowingBehaviour extends Behaviour<IThrowingBehaviourData> {
     this._follower = { t: 0, vec: new Phaser.Math.Vector2() };
     this._path = new Phaser.Curves.Path(this.entity.x, this.entity.y);
 
-    const power = 1//extra.power / 2000;
+    const power = extra.power / 2000;
     const percent = Phaser.Math.Clamp(power, 0.25, 1);
-    const end = { x: Math.floor(this.entity.isoPosition.x + 18 * percent), y: this.entity.isoPosition.y };
+    const end = { x: Math.floor(this.entity.isoPosition.x + this.data.distance * percent), y: this.entity.isoPosition.y };
 
     const world = IsoUtils.toWorld(end.x, end.y);
 
