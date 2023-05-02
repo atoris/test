@@ -1,0 +1,34 @@
+{
+  "config": {
+    "prefix": "config.",
+    "path": "assets/data",
+    "defaultType": "json",
+    "files": [
+      {
+        "key": "entities"
+      },
+      {
+        "key": "world"
+      },
+      {
+        "key": "weapons"
+      }
+    ]
+  },
+  "preload": {
+    "files": [
+      {
+        "type": "multiatlas",
+        "key": "tiles",
+        "url": "assets/textures/tiles.json",
+        "path": "assets/textures/"
+      },
+      {
+        "type": "multiatlas",
+        "key": "fire",
+        "url": "assets/textures/fire.json",
+        "path": "assets/textures/"
+      }
+    ]
+  }
+}

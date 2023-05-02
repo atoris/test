@@ -1,0 +1,95 @@
+[
+  {
+    "id": "player",
+    "behaviours": [
+      {
+        "id": "HealthBehaviour",
+        "data": {
+          "health": 10
+        }
+      },
+      {
+        "id": "WeaponControlBehaviour",
+        "data": {
+          "weapons": [
+            "grenade",
+            "dynamite"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "enemy",
+    "behaviours": [
+      {
+        "id": "HealthBehaviour",
+        "data": {
+          "health": 5
+        }
+      }
+    ]
+  },
+  {
+    "id": "wall",
+    "behaviours": [
+      {
+        "id": "ObstacleBehaviour",
+        "data": {}
+      }
+    ]
+  },
+  {
+    "id": "floor"
+  },
+  {
+    "id": "grenade",
+    "behaviours": [
+      {
+        "id": "ThrowingBehaviour",
+        "data": {
+          "distance": 22
+        }
+      },
+      {
+        "id": "ExplosionBehaviour",
+        "data": {
+          "range": 0,
+          "damage":2
+        }
+      }
+    ]
+  },
+  {
+    "id": "dynamite",
+    "behaviours": [
+      {
+        "id": "ThrowingBehaviour",
+        "data": {
+          "distance": 23
+        }
+      },
+      {
+        "id": "ExplosionBehaviour",
+        "data": {
+          "range": 1,
+          "damage":4
+        }
+      }
+    ]
+  },
+  {
+    "id": "fire",
+    "behaviours": [
+      {
+        "id": "AnimationBehaviour",
+        "data": {
+          "texture":"fire"
+        }
+      }
+    ]
+  },
+  {
+    "id": "target"
+  }
+]
