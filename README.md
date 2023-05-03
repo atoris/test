@@ -8,3 +8,4 @@ The phaser was used for development
 
  - [ ] have node.js installed on your PC
  - [ ] run the command npm install in the terminal
+ - [ ] run the command npm start
