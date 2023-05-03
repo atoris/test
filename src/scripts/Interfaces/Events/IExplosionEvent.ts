@@ -1,6 +1,9 @@
 import { Position } from '../../Providers/WorldProvider';
 
+/**
+ * Detonation signal
+ */
 export interface IExplosionEvent {
-  range:number;
+  range: number;
   position: Position;
 }

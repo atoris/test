@@ -1,5 +1,7 @@
+/**
+ * key constants for providers that are stored in Phaser.Data.DataManager
+ */
 export enum RegistryType {
   EntitiesProvider = 'EntitiesProvider',
-  WeaponsProvider = 'WeaponsProvider',
   WorldProvider = 'WorldProvider',
 }

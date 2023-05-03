@@ -1,8 +1,12 @@
+import { EventsType } from '../../Consts/Events';
 import { IHealthBehaviourData } from '../../Interfaces/Behaviour/IHealthBehaviourData';
 import { IExplosionCompleteEvent } from '../../Interfaces/Events/IExplosionCompleteEvent';
-import { IExplosionEvent } from '../../Interfaces/Events/IExplosionEvent';
 import { Behaviour } from './Behaviour';
 
+/**
+ * entity hp behavior
+ * creates a progress bar over the entity and animates it when defeated
+ */
 export class HealthBehaviour extends Behaviour<IHealthBehaviourData> {
   private _healthBar: Phaser.GameObjects.Rectangle;
   private _health: number;
@@ -20,10 +24,10 @@ export class HealthBehaviour extends Behaviour<IHealthBehaviourData> {
     container.setPosition(3, -90);
     this.entity.add(container);
 
-    this.entity.scene.game.events.on('explosioncomplete', this.onExplosion, this);
+    this.entity.scene.game.events.on(EventsType.explosioncomplete, this.onExplosion, this);
   }
 
-  private onExplosion(data: IExplosionCompleteEvent) {
+  private onExplosion(data: IExplosionCompleteEvent): void {
     if (this.entity.isoPosition.x === data.position.x && this.entity.isoPosition.y === data.position.y) {
       this._health -= data.damage;
       const percent = this._health / this.data.health;
@@ -35,7 +39,7 @@ export class HealthBehaviour extends Behaviour<IHealthBehaviourData> {
         ease: 'sine.inout',
         onComplete: () => {
           if (this._health <= 0) {
-            this.entity.scene.game.events.emit('gameover');
+            this.entity.scene.game.events.emit(EventsType.gameover);
           }
         },
       });
@@ -43,6 +47,6 @@ export class HealthBehaviour extends Behaviour<IHealthBehaviourData> {
   }
 
   public dispose(): void {
-    this.entity.scene.game.events.off('explosion', this.onExplosion, this);
+    this.entity.scene.game.events.off(EventsType.explosion, this.onExplosion, this);
   }
 }

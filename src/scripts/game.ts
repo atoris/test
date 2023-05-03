@@ -18,17 +18,7 @@ const config: Phaser.Types.Core.GameConfig = {
   },
   render:{
     antialias: false,
-		antialiasGL: true,
-		mipmapFilter: 'LINEAR', // 'NEAREST', 'LINEAR', 'NEAREST_MIPMAP_NEAREST', 'LINEAR_MIPMAP_NEAREST', 'NEAREST_MIPMAP_LINEAR', 'LINEAR_MIPMAP_LINEAR'
-		pixelArt: false,
-		roundPixels: false,
-		transparent: false,
-		clearBeforeRender: true,
-		premultipliedAlpha: true,
-		failIfMajorPerformanceCaveat: false,
-		powerPreference: 'default', // 'high-performance', 'low-power' or 'default'
-		batchSize: 4096,
-		desynchronized: false,
+		pixelArt: false
   },
 
   scene: [BootScene, GuiScene, MainScene],

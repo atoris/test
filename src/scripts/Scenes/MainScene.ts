@@ -1,15 +1,20 @@
+import { Camera } from '../Camera/Camera';
 import { DataProvider } from '../Providers/DataProvider';
 import { World } from '../World/World';
-export default class MainScene extends Phaser.Scene {
-  private _world: World;
 
+/**
+ * The game scene for the game world
+ */
+export default class MainScene extends Phaser.Scene {
   constructor() {
     super({ key: 'MainScene' });
   }
 
-  create() {
+  protected create(): void {
     new DataProvider(this);
-    this._world = new World(this);
-  }
 
+    const world = new World(this);
+
+    new Camera(this, world.container.getBounds());
+  }
 }

@@ -1,6 +1,9 @@
 import { Behaviour } from './Behaviour';
 import { IAnimationBehaviourData } from '../../Interfaces/Behaviour/IAnimationBehaviour';
 
+/**
+ * Behavior for unit animation processing
+ */
 export class AnimationBehaviour extends Behaviour<IAnimationBehaviourData> {
   public init(): void {
     this.entity.removeAll(true);
@@ -15,7 +18,7 @@ export class AnimationBehaviour extends Behaviour<IAnimationBehaviourData> {
     sprite.play({ key: this.data.texture, repeat: 0 }).on(
       Phaser.Animations.Events.ANIMATION_COMPLETE,
       () => {
-        this.entity.dispose();        
+        this.entity.dispose();
       },
       this
     );

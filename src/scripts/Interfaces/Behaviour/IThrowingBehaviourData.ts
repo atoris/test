@@ -1,5 +1,9 @@
-import { IBehaviourData } from "./IBehaviourData";
+import { IBehaviourData } from './IBehaviourData';
 
-export interface IThrowingBehaviourData extends IBehaviourData{
-  distance:number;
+/**
+ * Description of grenade throw behavior config, minimum and maximum length
+ */
+export interface IThrowingBehaviourData extends IBehaviourData {
+  min:number;
+  max: number;
 }

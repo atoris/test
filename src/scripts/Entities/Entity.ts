@@ -7,6 +7,10 @@ import { IBehaviourData } from '../Interfaces/Behaviour/IBehaviourData';
 import { World } from '../World/World';
 import { IDisposable } from '../Interfaces/IDisposable';
 
+/**
+ * Entity Description
+ * An Entity is essentially an entity (unit) that is created on the map
+ */
 export class Entity extends Phaser.GameObjects.Container implements IDisposable {
   public isoPosition: Position;
   public entityData: EntitySchema;
@@ -14,7 +18,15 @@ export class Entity extends Phaser.GameObjects.Container implements IDisposable 
   public world: World;
   public group: string;
 
-  public create(entityData: EntitySchema, isoX: number, isoY: number, world: World, group: string) {
+  /**
+   * creating a unit on the map, appearance, position on the map
+   * @param entityData config from entity.json file for this entity
+   * @param isoX isometric position on the map x
+   * @param isoY isometric position on map by y
+   * @param world game world
+   * @param group group the entity belongs to
+   */
+  public create(entityData: EntitySchema, isoX: number, isoY: number, world: World, group: string): void {
     this.entityData = entityData;
     this.behaviorService = new BehaviourService(this);
     this.isoPosition = { x: isoX, y: isoY };
@@ -28,19 +40,18 @@ export class Entity extends Phaser.GameObjects.Container implements IDisposable 
     this.add(tile);
   }
 
-  public addBehavior(id: string, data: IBehaviourData, extra?: any): Behaviour<IBehaviourData> {
-    return this.behaviorService.addBehavior(id, data, extra);
+  /**
+   * @see BehaviourService#addBehavior
+   */
+  public addBehavior(name: string, data: IBehaviourData, extra?: any): Behaviour<IBehaviourData> {
+    return this.behaviorService.addBehavior(name, data, extra);
   }
 
-  public hasBehaviour(type: string): boolean {
-    return this.behaviorService.hasBehaviour(type);
-  }
-
-  public getBehavior(type: string): Behaviour<IBehaviourData> | undefined {
-    return this.behaviorService.getBehavior(type);
-  }
-  public removeBehavior(behavior: Behaviour<IBehaviourData>): Entity {
-    return this.behaviorService.removeBehavior(behavior);
+  /**
+   * @see BehaviourService#hasBehaviour
+   */
+  public hasBehaviour(name: string): boolean {
+    return this.behaviorService.hasBehaviour(name);
   }
 
   public dispose(): void {

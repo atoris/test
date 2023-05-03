@@ -2,7 +2,10 @@ import { Entity } from '../Entity';
 import { IBehaviourData } from '../../Interfaces/Behaviour/IBehaviourData';
 import { IDisposable } from '../../Interfaces/IDisposable';
 
-export class Behaviour<T extends IBehaviourData> extends Phaser.Events.EventEmitter implements IDisposable {
+/**
+ * abstract class of behavior
+ */
+export abstract class Behaviour<T extends IBehaviourData> extends Phaser.Events.EventEmitter implements IDisposable {
   public name: string;
   public data: T;
   public entity: Entity;
@@ -13,6 +16,5 @@ export class Behaviour<T extends IBehaviourData> extends Phaser.Events.EventEmit
     this.data = data;
   }
   public dispose(): void {}
-
-  public init(extra?:any) {}
+  public init(extra?: any): void {}
 }

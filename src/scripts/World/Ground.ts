@@ -3,6 +3,9 @@ import { EntityFactory } from '../Entities/EntityFactory';
 import { Size, WorldProvider } from '../Providers/WorldProvider';
 import IsoUtils from '../Utils/IsoUtils';
 
+/**
+ * Creates isometric land tiles
+ */
 export class Ground {
   public entities: Entity[] = [];
   private _worldProvider: WorldProvider;
@@ -13,7 +16,7 @@ export class Ground {
     this._entityFactory = entityFactory;
   }
 
-  public create = (group: string): Promise<Entity[]> => {
+  public create = (group: string): Entity[] => {
     const world = this._worldProvider.get<Size>('world');
 
     const top = IsoUtils.toWorld(0, 0);
@@ -33,8 +36,6 @@ export class Ground {
       }
     }
 
-    return new Promise((resolve, reject) => {
-      resolve(this.entities);
-    });
+    return this.entities;
   };
 }

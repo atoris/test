@@ -1,4 +1,7 @@
-import { Behaviour } from "./Behaviour";
-import { IBehaviourData } from "../../Interfaces/Behaviour/IBehaviourData";
+import { Behaviour } from './Behaviour';
+import { IBehaviourData } from '../../Interfaces/Behaviour/IBehaviourData';
 
-export class ObstacleBehaviour extends Behaviour<IBehaviourData>{}
+/**
+ * behavior that indicates that this entity is a barrier to
+ */
+export class ObstacleBehaviour extends Behaviour<IBehaviourData> {}

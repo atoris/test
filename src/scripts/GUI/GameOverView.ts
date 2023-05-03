@@ -1,3 +1,6 @@
+/**
+ * The GameOver window opens when the player runs out of lives
+ */
 export class GameOverView extends Phaser.GameObjects.Container {
   constructor(scene: Phaser.Scene) {
     super(scene);

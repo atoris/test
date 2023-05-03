@@ -1,5 +1,8 @@
-import { IBehaviourData } from "./IBehaviourData";
+import { IBehaviourData } from './IBehaviourData';
 
-export interface IHealthBehaviourData extends IBehaviourData{
-  health:number;
+/**
+ * The description of the behavior of the number of hp at the entity
+ */
+export interface IHealthBehaviourData extends IBehaviourData {
+  health: number;
 }

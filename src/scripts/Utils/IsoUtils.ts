@@ -1,5 +1,5 @@
 /**
- * Преобразует экранные координаты контейнера в изометрические и наоботрот
+ * Converts screen container coordinates into isometric coordinates and vice versa
  */
 export default class IsoUtils {
   public static tileWidth: number = 111;
@@ -14,10 +14,10 @@ export default class IsoUtils {
   }
 
   /**
-   * Преобразует экранные координаты контейнера в изометрические
-   * @param	x - экранная x
-   * @param	y - экранная y
-   * @return	Object(x:isox, y:0, z:isoZ)
+   * Converts screen container coordinates into isometric coordinates
+   * @param x - screen x
+   * @param y - screen y
+   * @return Object(x:isox, y:0, z:isoZ)
    */
   public static toIso(x: number, y: number): Phaser.Geom.Point {
     x -= IsoUtils.deltaX;
@@ -33,10 +33,10 @@ export default class IsoUtils {
   }
 
   /**
-   * Преобразует изометрические координаты в экранные координаты контейнера
-   * @param	isoX - изометрическая x
-   * @param	isoZ - изометрическая z
-   * @return	Object{x:x, y:y}
+   * Converts isometric coordinates to screen container coordinates
+   * @param isoX - isometric x
+   * @param isoZ - isometric z
+   * @return Object{x:x, y:y}
    */
   public static toWorld(isoX: number, isoZ: number, delta: boolean = true): Phaser.Geom.Point {
     var x = ((isoX - isoZ) * IsoUtils.tileWidth) / 2;

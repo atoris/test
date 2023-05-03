@@ -48,7 +48,8 @@
       {
         "id": "ThrowingBehaviour",
         "data": {
-          "distance": 22
+          "min":5,
+          "max": 22
         }
       },
       {
@@ -66,7 +67,8 @@
       {
         "id": "ThrowingBehaviour",
         "data": {
-          "distance": 23
+          "min":3,
+          "max": 23
         }
       },
       {

@@ -1,8 +1,14 @@
+import { EventsType } from '../../Consts/Events';
+import { GroupsTypes } from '../../Consts/Groups';
 import { IThrowingBehaviourData } from '../../Interfaces/Behaviour/IThrowingBehaviourData';
 import { IFireEvent } from '../../Interfaces/Events/IFireEvent';
+import { Position } from '../../Providers/WorldProvider';
 import IsoUtils from '../../Utils/IsoUtils';
 import { Behaviour } from './Behaviour';
 
+/**
+ * flight behavior of the entity on an arc
+ */
 export class ThrowingBehaviour extends Behaviour<IThrowingBehaviourData> {
   private _follower: { t: number; vec: Phaser.Math.Vector2 };
   private _path: Phaser.Curves.Path;
@@ -12,8 +18,11 @@ export class ThrowingBehaviour extends Behaviour<IThrowingBehaviourData> {
     this._path = new Phaser.Curves.Path(this.entity.x, this.entity.y);
 
     const power = extra.power / 2000;
-    const percent = Phaser.Math.Clamp(power, 0.25, 1);
-    const end = { x: Math.floor(this.entity.isoPosition.x + this.data.distance * percent), y: this.entity.isoPosition.y };
+    const percent = Phaser.Math.Clamp(power, this.data.min / this.data.max, 1);
+    const end = {
+      x: Math.floor(this.entity.isoPosition.x + this.data.max * percent),
+      y: this.entity.isoPosition.y,
+    };
 
     const world = IsoUtils.toWorld(end.x, end.y);
 
@@ -26,13 +35,19 @@ export class ThrowingBehaviour extends Behaviour<IThrowingBehaviourData> {
       world.y - 100 * percent
     );
 
-    const target = this.entity.world.entityFactory.create('target', end.x, end.y, 'units');
+    this.createTween(percent, end);
 
-    const tween = this.entity.scene.tweens.add({
+    this.entity.scene.events.on(Phaser.Scenes.Events.UPDATE, this.onUpdate, this);
+  }
+
+  private createTween(percent: number, end: Position): void {
+    const target = this.entity.world.entityFactory.create('target', end.x, end.y, GroupsTypes.units);
+
+    this.entity.scene.tweens.add({
       targets: this._follower,
       t: 1,
       ease: 'Sine.easeInOut',
-      duration: 1000* percent,
+      duration: 1000 * percent,
       repeat: 0,
       yoyo: false,
       onComplete: () => {
@@ -40,21 +55,19 @@ export class ThrowingBehaviour extends Behaviour<IThrowingBehaviourData> {
 
         target.dispose();
 
-        this.entity.scene.game.events.emit('explosion', { position: end }, this);
+        this.entity.scene.game.events.emit(EventsType.explosion, { position: end }, this);
         this.entity.dispose();
       },
     });
-
-    this.entity.scene.events.on('update', this.onUpdate, this);
   }
 
-  public onUpdate() {
+  public onUpdate(): void {
     const point = this._path.getPoint(this._follower.t, this._follower.vec);
     this.entity.x = point.x;
     this.entity.y = point.y;
   }
 
   public dispose(): void {
-    this.entity.scene.events.off('update', this.onUpdate, this);
+    this.entity.scene.events.off(Phaser.Scenes.Events.UPDATE, this.onUpdate, this);
   }
 }

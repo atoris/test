@@ -1,6 +1,9 @@
-import { Position } from "../../Providers/WorldProvider";
+import { Position } from '../../Providers/WorldProvider';
 
+/**
+ * parameters for the explosion completion signal
+ */
 export interface IExplosionCompleteEvent {
-  position:Position
+  position: Position;
   damage: number;
 }

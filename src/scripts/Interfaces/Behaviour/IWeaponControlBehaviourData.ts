@@ -1,5 +1,8 @@
-import { IBehaviourData } from "./IBehaviourData";
+import { IBehaviourData } from './IBehaviourData';
 
-export interface IWeaponControlBehaviourData extends IBehaviourData{
-  weapons:string[];
+/**
+ * The description of the behavioral config for the entity weapon
+ */
+export interface IWeaponControlBehaviourData extends IBehaviourData {
+  weapons: string[];
 }

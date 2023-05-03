@@ -1,3 +1,6 @@
+/**
+ * Grid width for drawing buttons
+ */
 export class GridPanel extends Phaser.GameObjects.Container {
   public addItem(item: Phaser.GameObjects.Container | Phaser.GameObjects.Container[]): GridPanel {
     this.add(item);

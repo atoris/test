@@ -1,6 +1,9 @@
-import { IBehaviourData } from "./IBehaviourData";
+import { IBehaviourData } from './IBehaviourData';
 
-export interface IExplosionBehaviourData extends IBehaviourData{
-  range:number;
-  damage:number;
+/**
+ * a description of the behavior config for the explosion
+ */
+export interface IExplosionBehaviourData extends IBehaviourData {
+  range: number;
+  damage: number;
 }
